@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>HUB</title>
+<!-- <meta http-equiv="refresh" content="15"> -->
+</head>
+<body id="main" style="background-color:pink;">
+<button onclick="setBlue()">Blue</button>
+<button onclick="setRed()">Red</button>
+<button onclick="setGreen()">Green</button>
+
+<script src="http://192.168.1.27:5000/getSocketIO"></script>
+<script>
+
+var element = document.getElementById("main");
+var socket = io('192.168.1.27:5000');
+
+function setBlue() {  
+  element.style.backgroundColor = "blue";
+  socket.emit('setBlue');
+}
+function setRed() {  
+  element.style.backgroundColor = "red";
+  socket.emit('setRed');
+}
+function setGreen() {  
+  element.style.backgroundColor = "Green";
+  socket.emit('setGreen');
+}
+
+socket.on('connect', () => {
+  console.log('/hub connected');
+});
+socket.on('disconnect', () => {
+  console.log('/hub disconnected');
+});
+</script>
+</body>
+</html>

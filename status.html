@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>STATUS</title>
+  <!-- <meta http-equiv="refresh" content="15"> -->
+  <style>
+      .app {
+        background-color:pink;
+      }
+      .statusText {
+        font-size: 100px
+      }
+      </style>
+</head>
+
+<body class="app">
+<!-- 
+  <button onclick="setBlue()">Blue</button>
+  <button onclick="setRed()">Red</button>
+  <button onclick="setGreen()">Green</button> -->
+  <div class="statusText">
+      Boop-Beep Booting
+  </div>
+
+  <script src="http://192.168.1.27:5000/getSocketIO"></script>
+  <script>
+
+    var app = document.querySelector(".app");
+    var statusText = document.querySelector(".statusText");
+    var socket = io('192.168.1.27:5000');
+
+    function setBlue() {
+      console.log("set blue");
+      statusText.innerHTML = "Do Not Disturb"
+      app.style.backgroundColor = "blue";
+    }
+    function setRed() {
+      console.log("set red");
+      statusText.innerHTML = "Out of Office"
+      app.style.backgroundColor = "red";
+    }
+    function setGreen() {
+      console.log("set green");
+      statusText.innerHTML = "Available"
+      app.style.backgroundColor = "Green";
+    }
+
+    socket.on('connect', () => {
+      console.log('/status connected');
+      setGreen();
+    });
+    socket.on('disconnect', () => {
+      console.log('/status disconnected');
+    });
+    socket.on('setBlue', () => {
+      setBlue();
+    });
+    socket.on('setRed', () => {
+      setRed();
+    });
+    socket.on('setGreen', () => {
+      setGreen();
+    });
+  </script>
+</body>
+
+</html>
