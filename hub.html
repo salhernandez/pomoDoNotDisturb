@@ -3,11 +3,32 @@
 <head>
 <title>HUB</title>
 <!-- <meta http-equiv="refresh" content="15"> -->
+<style>
+  .grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    background-color: #2196F3;
+    padding: 10px;
+  }
+  .grid-item {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+  }
+</style>
 </head>
 <body id="main" style="background-color:pink;">
-<button onclick="setBlue()">Blue</button>
-<button onclick="setRed()">Red</button>
-<button onclick="setGreen()">Green</button>
+
+<div class="grid-container">
+  <div class="grid-item">Start Pomodoro</div>
+  <div class="grid-item">Stop Pomodoro</div>
+  <div class="grid-item">Auto Pomodoro</div>  
+  <div onclick="setGreen()" class="grid-item">Available</div>
+  <div onclick="setBlue()" class="grid-item">Do Not Disturb</div>
+  <div onclick="setRed()" class="grid-item">Out Of Office</div>
+</div>
 
 <script src="http://192.168.1.27:5000/getSocketIO"></script>
 <script>
