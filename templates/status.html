@@ -28,20 +28,17 @@
 
     var app = document.querySelector(".app");
     var statusText = document.querySelector(".statusText");
-    var socket = io('192.168.1.27:5000');
+    var socket = io();
 
     function setBlue() {
-      console.log("set blue");
       statusText.innerHTML = "Do Not Disturb"
       app.style.backgroundColor = "blue";
     }
     function setRed() {
-      console.log("set red");
       statusText.innerHTML = "Out of Office"
       app.style.backgroundColor = "red";
     }
     function setGreen() {
-      console.log("set green");
       statusText.innerHTML = "Available"
       app.style.backgroundColor = "Green";
     }

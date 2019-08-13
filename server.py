@@ -1,20 +1,19 @@
-import flask
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask_socketio import SocketIO, emit
 
-app = flask.Flask(__name__)
+app = Flask(__name__)
 socketio = SocketIO(app)
 
 # sites
 @app.route('/hub')
 def hub():
-    data = open('hub.html').read()
-    return data
+    # data = open('hub.html').read()
+    # return data
+    return render_template('hub.html')
 
 @app.route('/status')
 def status():
-    data = open('status.html').read()
-    return data
+    return render_template('status.html')
 
 # libraries
 @app.route('/getSocketIO')
@@ -25,7 +24,6 @@ def getSocketIO():
 # set statuses
 @socketio.on('setRed')
 def setRed():
-    print("bruh")
     emit('setRed', broadcast=True)
 
 @socketio.on('setGreen')
@@ -39,11 +37,11 @@ def setBlue():
 # connection status
 @socketio.on('connect')
 def on_connect():
-    print ("%s USER CONNECTED " %  flask.request.sid)
+    print ("%s USER CONNECTED " % request.sid)
 
 @socketio.on('disconnect')
 def on_disconnect():
-    print ("%s USER DISCONNECTED " %  flask.request.sid)
+    print ("%s USER DISCONNECTED " % request.sid)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    socketio.run(app, debug=True, host="0.0.0.0", port=5000)
