@@ -15,12 +15,6 @@ def hub():
 def status():
     return render_template('status.html')
 
-# libraries
-@app.route('/getSocketIO')
-def getSocketIO():
-    data = open('socket.io.js').read()
-    return data
-
 # set statuses
 @socketio.on('setRed')
 def setRed():
