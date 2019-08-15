@@ -22,12 +22,15 @@
 <body id="main" style="background-color:pink;">
 
 <div class="grid-container">
-  <div class="grid-item">Start Pomodoro</div>
+  <div class="grid-item" id="timer">Timer</div>
+  <div class="grid-item"></div>
+  <div class="grid-item">Pomodoro Status</div>
+  <div class="grid-item" onclick="startPomodoro()">Start Pomodoro</div>
   <div class="grid-item">Stop Pomodoro</div>
-  <div class="grid-item">Auto Pomodoro</div>  
-  <div onclick="setGreen()" class="grid-item">Available</div>
-  <div onclick="setBlue()" class="grid-item">Do Not Disturb</div>
-  <div onclick="setRed()" class="grid-item">Out Of Office</div>
+  <div class="grid-item">Auto Pomodoro</div>
+  <div class="grid-item" onclick="setGreen()">Available</div>
+  <div class="grid-item" onclick="setBlue()" >Do Not Disturb</div>
+  <div class="grid-item" onclick="setRed()">Out Of Office</div>
 </div>
 
 <script type="text/javascript" src="{{ url_for('static', filename='socket.io.js') }}"></script>
@@ -35,6 +38,37 @@
 
 var element = document.getElementById("main");
 var socket = io();
+
+function startPomodoro() {  
+  startCountdown();
+}
+
+function addMinutesToDate(date, minutes) {
+    return new Date(date.getTime() + minutes*60000);
+}
+
+function startCountdown() {
+let countDownDate = addMinutesToDate(new Date(), 1);
+
+var x = setInterval(function() {
+  let now = new Date();
+  let distance = countDownDate.getTime() - now.getTime();
+
+  let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  document.getElementById("timer").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("timer").innerHTML = "EXPIRED";
+    socket.emit('setGreen');
+  }
+}, 1000);
+}
 
 function setBlue() {  
   element.style.backgroundColor = "blue";
