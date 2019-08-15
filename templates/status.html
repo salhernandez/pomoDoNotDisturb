@@ -23,7 +23,7 @@
       Boop-Beep Booting
   </div>
 
-  <script src="http://10.0.0.1:5000/getSocketIO"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='socket.io.js') }}"></script>
   <script>
 
     var app = document.querySelector(".app");
