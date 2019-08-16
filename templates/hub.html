@@ -2,7 +2,6 @@
 <html>
 <head>
 <title>HUB</title>
-<!-- <meta http-equiv="refresh" content="15"> -->
 <style>
   .grid-container {
     display: grid;
@@ -24,10 +23,10 @@
 <div class="grid-container">
   <div class="grid-item" id="timer">Timer</div>
   <div class="grid-item"></div>
-  <div class="grid-item">Pomodoro Status</div>
+  <div class="grid-item" id="status">Pomodoro Status</div>
   <div class="grid-item" onclick="startPomodoro()">Start Pomodoro</div>
-  <div class="grid-item" onclick="stopPomodoro()">Stop Pomodoro</div>
-  <div class="grid-item">Auto Pomodoro</div>
+  <div class="grid-item" onclick="stopPomodoro()">Stop</div>
+  <div class="grid-item" onclick="startBreak()">Break</div>
   <div class="grid-item" onclick="setGreen()">Available</div>
   <div class="grid-item" onclick="setBlue()" >Do Not Disturb</div>
   <div class="grid-item" onclick="setRed()">Out Of Office</div>
@@ -41,15 +40,21 @@ var socket = io();
 var x;
 
 function startPomodoro() {
-  startCountdown();
+  document.getElementById("status").innerHTML = "Pomo Mode";
+  startCountdown("pomodoro", 25);
+}
+
+function startBreak() {
+  document.getElementById("status").innerHTML = "Break";
+  startCountdown("break", 5);
 }
 
 function addMinutesToDate(date, minutes) {
     return new Date(date.getTime() + minutes*60000);
 }
 
-function startCountdown() {
-  let countDownDate = addMinutesToDate(new Date(), 1);
+function startCountdown(cType, minutes) {
+  let countDownDate = addMinutesToDate(new Date(), minutes);
 
   x = setInterval(function() {
     let now = new Date();
@@ -65,8 +70,14 @@ function startCountdown() {
 
     if (distance < 0) {
       clearInterval(x);
-      document.getElementById("timer").innerHTML = "EXPIRED";
-      socket.emit('setGreen');
+
+      if(cType === "pomdoro"){
+        document.getElementById("timer").innerHTML = "EXPIRED";
+        socket.emit('setGreen');
+      } else{
+        document.getElementById("timer").innerHTML = "EXPIRED";
+        // socket.emit('setGreen');
+      }
     }
   }, 1000);
 }
@@ -74,6 +85,7 @@ function startCountdown() {
 function stopPomodoro() {
   clearInterval(x);
   document.getElementById("timer").innerHTML = "STOPPED";
+  document.getElementById("status").innerHTML = "No Pomo";
 }
 
 function setBlue() {  
