@@ -38,14 +38,10 @@
 
 var element = document.getElementById("main");
 var socket = io();
-var x, stop=false;
+var x;
 
 function startPomodoro() {
   startCountdown();
-}
-
-function stopPomodoro() {
-  stopTimer = true;
 }
 
 function addMinutesToDate(date, minutes) {
@@ -53,31 +49,31 @@ function addMinutesToDate(date, minutes) {
 }
 
 function startCountdown() {
-let countDownDate = addMinutesToDate(new Date(), 1);
+  let countDownDate = addMinutesToDate(new Date(), 1);
 
-x = setInterval(function() {
-  let now = new Date();
-  distance = countDownDate.getTime() - now.getTime();
+  x = setInterval(function() {
+    let now = new Date();
+    distance = countDownDate.getTime() - now.getTime();
 
-  let days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-  document.getElementById("timer").innerHTML = days + "d " + hours + "h "
-  + minutes + "m " + seconds + "s ";
+    document.getElementById("timer").innerHTML = days + "d " + hours + "h "
+    + minutes + "m " + seconds + "s ";
 
-  if (stopTimer){
-    clearInterval(x);
-    document.getElementById("timer").innerHTML = "STOPPED";
-    stopTimer = false;
-  } 
-  if (distance < 0) {
-    clearInterval(x);
-    document.getElementById("timer").innerHTML = "EXPIRED";
-    socket.emit('setGreen');
-  }
-}, 1000);
+    if (distance < 0) {
+      clearInterval(x);
+      document.getElementById("timer").innerHTML = "EXPIRED";
+      socket.emit('setGreen');
+    }
+  }, 1000);
+}
+
+function stopPomodoro() {
+  clearInterval(x);
+  document.getElementById("timer").innerHTML = "STOPPED";
 }
 
 function setBlue() {  
