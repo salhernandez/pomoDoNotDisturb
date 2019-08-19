@@ -42,7 +42,7 @@ var x;
 function startPomodoro() {
   document.getElementById("status").innerHTML = "Pomo Mode";
   socket.emit("setBlue");
-  startCountdown("pomodoro", 1);
+  startCountdown("pomodoro", 25);
 }
 
 function startBreak() {
@@ -72,7 +72,6 @@ function startCountdown(cType, minutes) {
 
     if (distance < 0) {
       clearInterval(x);
-
       if(cType === "pomodoro"){
         document.getElementById("timer").innerHTML = "EXPIRED";
         socket.emit('setGreen');
