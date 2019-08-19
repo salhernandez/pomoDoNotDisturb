@@ -41,7 +41,7 @@ var x;
 
 function startPomodoro() {
   document.getElementById("status").innerHTML = "Pomo Mode";
-  socket.emit("setBlue");
+  setBlue();
   startCountdown("pomodoro", 25);
 }
 
