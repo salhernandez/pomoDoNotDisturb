@@ -41,60 +41,60 @@ For my setup I have the Pi Hub with a touchscreen and and the Pi Zero on a regul
 - Add Static IP to usb interface
     - Open `/etc/dhcpcd.config` and add the following:
     ```bash
-        # add to the end of the file
-        ## for pi zero
-        interface usb0
-        static ip_address=10.0.0.2
+    # add to the end of the file
+    ## for pi zero
+    interface usb0
+    static ip_address=10.0.0.2
     ```    
 
 - Force the screen to stay on:
     - Open `sudo nano /etc/lightdm/lightdm.conf` and add the following lines to the [SeatDefaults] section:
     ```bash
-        # don't sleep the screen
-        xserver-command=X -s 0 -dpms
+    # don't sleep the screen
+    xserver-command=X -s 0 -dpms
     ```
 
 - Open website after booting
     - Open `/etc/xdg/lxsession/LXDE-pi/autostart` and add the following at the end of the file:
-```bash
-        #@xscreensaver -no-splash  # comment this line out to disable screensaver
-        @xset s off
-        @xset -dpms
-        @xset s noblank
-        @chromium-browser --kiosk --disable-session-crashed-bubble --disable-infobars --app=http://10.0.0.1:5000/status
-```
+    ```bash
+    #@xscreensaver -no-splash  # comment this line out to disable screensaver
+    @xset s off
+    @xset -dpms
+    @xset s noblank
+    @chromium-browser --kiosk --disable-session-crashed-bubble --disable-infobars --app=http://10.0.0.1:5000/status
+    ```
   - [http://10.0.0.1:5000/status](http://10.0.0.1:5000/status) is pointing to the IP of Pi Hub
 
 ## Setup Pi Hub(Pi 3)
 
 - Install libraries needed
     - Open a terminal on Pi Hub and run the following:
-```bash
-        # HUB libraries
-        sudo pip3 install Flask
-        sudo pip3 install flask-socketio
-```
+    ```bash
+    # HUB libraries
+    sudo pip3 install Flask
+    sudo pip3 install flask-socketio
+    ```
 
 - Add usb0 static IP
     - Open `/etc/dhcpcd.config`  and add the following:
-```bash
-            # add to the end of the file
-            ## for pi hub
-            interface usb0
-            static ip_address=10.0.0.1
-```            
+    ```bash
+    # add to the end of the file
+    ## for pi hub
+    interface usb0
+    static ip_address=10.0.0.1
+    ```            
 
 - Run the server
     - In a terminal, navigate to pomoDoNotDisturb folder and run the following:
-        ```bash
-        python3 server.py
-        ```
+    ```bash
+    python3 server.py
+    ```
 
 - Go to control hub
     - Open browser and go to the following address
-  ```bash
-        http://localhost:5000/hub
-  ```
+    ```bash
+    http://localhost:5000/hub
+    ```
 
 ## Putting it all together
 
@@ -103,14 +103,14 @@ For my setup I have the Pi Hub with a touchscreen and and the Pi Zero on a regul
 - Turn on Pi Hub
 - Run the server
     - In a terminal, navigate to pomoDoNotDisturb folder and run the following:
-  ```bash
-        python3 server.py
-  ```
+    ```bash
+    python3 server.py
+    ```
 - Go to control hub
     - Open browser and go to the following address
-```bash
-        http://localhost:5000/hub
-```
+    ```bash
+    http://localhost:5000/hub
+    ```
 - Pi Zero should now be showing the current status
 
 ## Developing
