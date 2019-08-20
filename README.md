@@ -31,7 +31,7 @@ For my setup I have the Pi Hub with a touchscreen and and the Pi Zero on a regul
 - Open browser after booting on a raspberry pi
 
 ## Setup Pi Zero W
-
+- Make sure to have Raspian Desktop installed
 - You can also use a regular Pi Zero for this, we will not be using Wifi or Bluetooth for this
 - Setup Ethernet Gadget
     - ONLY SETUP BASIC SSH, DO NOT DO THE ADVANCED SETUP IN THE ARTICLE
@@ -66,6 +66,7 @@ For my setup I have the Pi Hub with a touchscreen and and the Pi Zero on a regul
   - [http://10.0.0.1:5000/status](http://10.0.0.1:5000/status) is pointing to the IP of Pi Hub
 
 ## Setup Pi Hub(Pi 3)
+- Make sure to have Raspian Desktop installed
 - Clone repository
 - Install libraries needed
     - Open a terminal on Pi Hub and run the following:
