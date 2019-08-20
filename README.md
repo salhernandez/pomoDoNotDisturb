@@ -22,12 +22,13 @@ For my setup I have the Pi Hub with a touchscreen and and the Pi Zero on a regul
 
 ## What I learned
 
-- Setup USB Gadget
-- Setup static IPs for usb connections
-- serve js libraries offline
-    - copy unpck or cdn library locally
+- How to usb/ethernet Gadget
+- How Setup static IPs for usb connections
+- Serve js libraries offline
+    - copy unpkg or cdn libraries to local files
 - How to use Python3
-- Load a open browser after booting on a raspberry pi
+  - pip3, python3 server.py
+- Open browser after booting on a raspberry pi
 
 ## Setup Pi Zero W
 
