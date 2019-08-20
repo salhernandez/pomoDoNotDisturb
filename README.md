@@ -1,3 +1,4 @@
+# pomoDoNotDisturb
 ## Purpose
 
 Have a small screen showing if you are available, do not disturb, or out of office and another screen as a control hub. I wanted to learn something new and learn how to make a pi zero communicate with a Raspberry Pi 3. I also wanted to keep it offline.
