@@ -49,7 +49,7 @@ For my setup I have the Pi Hub with a touchscreen and and the Pi Zero on a regul
 
 - Force the screen to stay on:
     - Open `sudo nano /etc/lightdm/lightdm.conf` and add the following lines to the [SeatDefaults] section:
-    - ```bash
+    ```bash
         # don't sleep the screen
         xserver-command=X -s 0 -dpms
     ```
