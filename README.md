@@ -66,7 +66,7 @@ For my setup I have the Pi Hub with a touchscreen and and the Pi Zero on a regul
   - [http://10.0.0.1:5000/status](http://10.0.0.1:5000/status) is pointing to the IP of Pi Hub
 
 ## Setup Pi Hub(Pi 3)
-
+- Clone repository
 - Install libraries needed
     - Open a terminal on Pi Hub and run the following:
     ```bash
