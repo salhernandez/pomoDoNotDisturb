@@ -39,7 +39,7 @@ For my setup I have the Pi Hub with a touchscreen and and the Pi Zero on a regul
     [Turning your Raspberry PI Zero into a USB Gadget](https://learn.adafruit.com/turning-your-raspberry-pi-zero-into-a-usb-gadget/ethernet-gadget)
 
 - Add Static IP to usb interface
-    - Open `/etc/dhcpcd.config` and add the following:
+    - Open `sudo nano /etc/dhcpcd.conf` and add the following:
     ```bash
     # add to the end of the file
     ## for pi zero
