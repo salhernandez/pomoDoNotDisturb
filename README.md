@@ -55,7 +55,7 @@ For my setup I have the Pi Hub with a touchscreen and and the Pi Zero on a regul
     ```
 
 - Open website after booting
-    - Open `/etc/xdg/lxsession/LXDE-pi/autostart` and add the following at the end of the file:
+    - Open `sudo nano /etc/xdg/lxsession/LXDE-pi/autostart` and add the following at the end of the file:
     ```bash
     #@xscreensaver -no-splash  # comment this line out to disable screensaver
     @xset s off
