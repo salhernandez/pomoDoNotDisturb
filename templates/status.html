@@ -4,23 +4,28 @@
 <head>
   <title>STATUS</title>
   <style>
-      .app {
-        background-color:pink;
-      }
-      .statusText {
-        font-size: 100px;
-        color: white;
-      }
-      </style>
+    .app {
+      background-color: pink;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      /* bring your own prefixes */
+      transform: translate(-50%, -50%);
+
+      /* Center align text   */
+      text-align: center;
+    }
+
+    .statusText {
+      font-size: 100px;
+      color: white;
+    }
+  </style>
 </head>
 
 <body class="app">
-<!-- 
-  <button onclick="setBlue()">Blue</button>
-  <button onclick="setRed()">Red</button>
-  <button onclick="setGreen()">Green</button> -->
   <div class="statusText">
-      Boop-Beep Booting
+    Boop-Beep Booting
   </div>
 
   <script type="text/javascript" src="{{ url_for('static', filename='socket.io.js') }}"></script>
