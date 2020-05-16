@@ -157,11 +157,13 @@ Make sure that file sharing is enabled for Docker.
 To enable file sharing go to `Docker Dashboard -> Settings -> Resources -> FILE SHARING` and enable for your drive.
 
 ## Docker Development Setup
-1. Create docker image
+1. Clone repository
+2. Open terminal and navigate to repository
+3. Create docker image
     ```bash
     docker build -t pomodonotdisturb -f .Dockerfile .
     ```
-2. Run options:
+4. Run options:
    1. Run in terminal
         ```bash
         docker run -it --rm -e "APP_ENVIRONMENT=development" -v %cd%:/app -w /app -p 5000:5000 pomodonotdisturb
@@ -170,7 +172,7 @@ To enable file sharing go to `Docker Dashboard -> Settings -> Resources -> FILE 
         ```bash
         docker run -it --rm -e "APP_ENVIRONMENT=development" -v %cd%:/app -w /app -d -p 5000:5000 pomodonotdisturb
         ```
-3. Open browser and go to the following address
+5. Open browser and go to the following address
     ```bash
     http://localhost:5000/hub
     ```
