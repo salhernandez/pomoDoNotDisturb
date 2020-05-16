@@ -86,7 +86,7 @@ For my setup I have the Pi Hub with a touchscreen and and the Pi Zero on a regul
     ```            
 
 - Run the server
-    - In a terminal, navigate to pomoDoNotDisturb folder and run the following:
+    - In a terminal, navigate to pomoDoNotDisturb/src folder and run the following:
     ```bash
     python3 server.py
     ```
@@ -103,7 +103,7 @@ For my setup I have the Pi Hub with a touchscreen and and the Pi Zero on a regul
 - Plug in a micro-usb cable to the center micro-usb port of the Pi Zero and plug in the other side to the Pi Hub
 - Turn on Pi Hub
 - Run the server
-    - In a terminal, navigate to pomoDoNotDisturb folder and run the following:
+    - In a terminal, navigate to pomoDoNotDisturb/src folder and run the following:
     ```bash
     python3 server.py
     ```
