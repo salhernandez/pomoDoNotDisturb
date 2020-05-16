@@ -7,8 +7,6 @@ socketio = SocketIO(app)
 # sites
 @app.route('/hub')
 def hub():
-    # data = open('hub.html').read()
-    # return data
     return render_template('hub.html')
 
 @app.route('/status')
