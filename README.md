@@ -29,6 +29,8 @@ For my setup I have the Pi Hub with a touchscreen and and the Pi Zero on a regul
 - Use Python3
   - pip3, python3 server.py
 - Open browser after booting on a raspberry pi
+- Use Dockerfile to create python container
+- Setup Development environment using Docker
 
 
 # Install Instructions for Docker
@@ -151,10 +153,17 @@ For my setup I have the Pi Hub with a touchscreen and and the Pi Zero on a regul
 - Pi Zero should now be showing the current status
 
 # Development Setup
+ToDo
+- [x] Restart server on  `*.py` file changes
+- [ ] Reload webpages on `html/js` changes
+  - For now you have to reload the page manually
+
 Application restarts when any `.py` file changes using [python-hotreload](https://github.com/makerGeek/python-hotreload)
+
 
 Make sure that file sharing is enabled for Docker.
 To enable file sharing go to `Docker Dashboard -> Settings -> Resources -> FILE SHARING` and enable for your drive.
+
 
 ## Docker Development Setup
 1. Clone repository
