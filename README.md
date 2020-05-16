@@ -29,7 +29,47 @@ For my setup I have the Pi Hub with a touchscreen and and the Pi Zero on a regul
 - Use Python3
   - pip3, python3 server.py
 - Open browser after booting on a raspberry pi
+- Use Dockerfile to create python container
+- Setup Development environment using Docker
 
+
+# Install Instructions for Docker
+1. Install [Docker](https://www.docker.com/products/docker-desktop)
+2. Clone repository
+3. Open terminal and navigate to repository
+4. Create docker image
+    ```bash
+    docker build -t pomodonotdisturb -f .Dockerfile .
+    ```
+5. Run server in background on docker
+    ```bash
+    docker run -d -p 5000:5000 pomodonotdisturb
+    ```
+6. Open browser and go to the following address
+    ```bash
+    http://localhost:5000/hub
+    ```
+   1. The page should now be served
+
+# Install + Run Instructions for Linux
+1. Clone repository
+2. Open terminal and navigate to repository
+3. Install libraries
+    ```bash
+    pip install -r requirements.txt
+    ```
+4. Run server
+    ```bash
+    python src/server.py
+    ```
+5. Open browser and go to the following address
+    ```bash
+    http://localhost:5000/hub
+    ```
+   1. The page should now be served
+
+
+# Install Instructions for PI3 + PI Zero W
 ## Setup Pi Zero W
 - Make sure to have Raspian Desktop installed
 - You can also use a regular Pi Zero for this, we will not be using Wifi or Bluetooth for this
@@ -69,11 +109,9 @@ For my setup I have the Pi Hub with a touchscreen and and the Pi Zero on a regul
 - Make sure to have Raspian Desktop installed
 - Clone repository
 - Install libraries needed
-    - Open a terminal on Pi Hub and run the following:
+    - Open a terminal on Pi Hub and run the following from `pomoDoNotDisturb`:
     ```bash
-    # HUB libraries
-    sudo pip3 install Flask
-    sudo pip3 install flask-socketio
+    pip install -r requirements.txt
     ```
 
 - Add usb0 static IP
@@ -86,7 +124,7 @@ For my setup I have the Pi Hub with a touchscreen and and the Pi Zero on a regul
     ```            
 
 - Run the server
-    - In a terminal, navigate to pomoDoNotDisturb folder and run the following:
+    - In a terminal, navigate to pomoDoNotDisturb/src folder and run the following:
     ```bash
     python3 server.py
     ```
@@ -103,7 +141,7 @@ For my setup I have the Pi Hub with a touchscreen and and the Pi Zero on a regul
 - Plug in a micro-usb cable to the center micro-usb port of the Pi Zero and plug in the other side to the Pi Hub
 - Turn on Pi Hub
 - Run the server
-    - In a terminal, navigate to pomoDoNotDisturb folder and run the following:
+    - In a terminal, navigate to pomoDoNotDisturb/src folder and run the following:
     ```bash
     python3 server.py
     ```
@@ -114,6 +152,56 @@ For my setup I have the Pi Hub with a touchscreen and and the Pi Zero on a regul
     ```
 - Pi Zero should now be showing the current status
 
-## Developing
+# Development Setup
+ToDo
+- [x] Restart server on  `*.py` file changes
+- [ ] Reload webpages on `html/js` changes
+  - For now you have to reload the page manually
 
-- Install Flask and Flask-socketio, run the server and code away. You don't need multiple Pi's for this.
+Application restarts when any `.py` file changes using [python-hotreload](https://github.com/makerGeek/python-hotreload)
+
+
+Make sure that file sharing is enabled for Docker.
+To enable file sharing go to `Docker Dashboard -> Settings -> Resources -> FILE SHARING` and enable for your drive.
+
+
+## Docker Development Setup
+1. Clone repository
+2. Open terminal and navigate to repository
+3. Create docker image
+    ```bash
+    docker build -t pomodonotdisturb -f .Dockerfile .
+    ```
+4. Run options:
+   1. Run in terminal
+        ```bash
+        docker run -it --rm -e "APP_ENVIRONMENT=development" -v %cd%:/app -w /app -p 5000:5000 pomodonotdisturb
+        ```
+   2. Run in the background
+        ```bash
+        docker run -it --rm -e "APP_ENVIRONMENT=development" -v %cd%:/app -w /app -d -p 5000:5000 pomodonotdisturb
+        ```
+5. Open browser and go to the following address
+    ```bash
+    http://localhost:5000/hub
+    ```
+   1. The page should now be served
+
+ 
+## Linux Development Setup
+1. Clone repository
+2. Open terminal and navigate to repository
+3. Install libraries
+    ```bash
+    pip install -r requirements.txt
+    ```
+4. Run server and watch files for changes
+    ```bash
+    python src/sourceChangeMonitor.py src/server.py
+    ```
+5. Open browser and go to the following address
+    ```bash
+    http://localhost:5000/hub
+    ```
+   1. The page should now be served
+6. When you make a change, the app should restart
