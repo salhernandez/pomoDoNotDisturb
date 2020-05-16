@@ -4,7 +4,7 @@
 # Development will watch for python file changes
 
 serverFile="${PWD}/src/server.py"
-devServerFile="${PWD}/sourceChangeMonitor.py"
+devServerFile="${PWD}/src/sourceChangeMonitor.py"
 
 if [ "$APP_ENVIRONMENT" = "development" ]
 then
