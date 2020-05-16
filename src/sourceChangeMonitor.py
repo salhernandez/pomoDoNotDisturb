@@ -6,6 +6,17 @@ import sys, os, time, threading, subprocess, fnmatch
 # Set program file based on argument
 PROGRAM_FILE = str(sys.argv[1])
 
+bcolors = {
+    "HEADER" : '\033[95m',
+    "OKBLUE" : '\033[94m',
+    "OKGREEN" : '\033[92m',
+    "WARNING" : '\033[93m',
+    "FAIL" : '\033[91m',
+    "ENDC" : '\033[0m',
+    "BOLD" : '\033[1m',
+    "UNDERLINE" : '\033[4m'
+}
+
 class SourceChangeMonitor(threading.Thread):
 
         # Remember the process ID of the subprocess for when                                                                 
@@ -35,9 +46,9 @@ class SourceChangeMonitor(threading.Thread):
                 while 1:
                         time.sleep(self.POLL_INTERVAL)
                         if self.poll():
-                                print( "-------------------------------------------------")
-                                print( "Noticed a change in program source. Restarting...")
-                                print( "-------------------------------------------------")
+                                print(bcolors["HEADER"] + "-------------------------------------------------" + bcolors["ENDC"])
+                                print(bcolors["HEADER"] + "Noticed a change in program source. Restarting..." + bcolors["ENDC"])
+                                print(bcolors["HEADER"] + "-------------------------------------------------" + bcolors["ENDC"])
                                 self.start_program()
 
         def get_files(self):
