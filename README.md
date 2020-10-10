@@ -18,7 +18,7 @@ Have a small screen showing if you are available, do not disturb, or out of offi
 
 For my setup I have the Pi Hub with a touchscreen and and the Pi Zero on a regular hdmi screen
 
-![Alt Text](/media/demo.gif)
+![Alt Text](https://github.com/salhernandez/pomoDoNotDisturb/blob/master/src/media/demo.gif)
 
 ## What I learned
 
